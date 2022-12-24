@@ -360,7 +360,7 @@ reply_id    <- my_timeline$id_str[1]
 
 for (entidad in entidades[2:length(entidades)]){
 
-  Sys.sleep(10)
+  Sys.sleep(16*60) #16 minutos
   
   rtweet::post_tweet(status = glue("#covidmx en #{str_remove_all(entidad,' ')}"), 
                      display_coordinates = FALSE, 
@@ -369,6 +369,9 @@ for (entidad in entidades[2:length(entidades)]){
                      media = file.path("images", glue("{entidad}.png")))
   cat(entidad)
   
+  my_timeline <- rtweet::get_my_timeline()
+  reply_id    <- my_timeline$id_str[1]
+
 }
 
 
